@@ -1,11 +1,13 @@
-import { Suspense } from "react"
-import styles from "./admin.module.css"
-import AdminPosts from "@/components/adminPosts/adminPosts"
-import AdminPostsForm from "@/components/adminPostForm/adminPostForm"
-import AdminUsersForm from "@/components/adminUserForm/AdminUsersForm"
-import AdminUsers from "@/components/adminUsers/adminUsers"
+import { Suspense } from "react";
+import styles from "./admin.module.css";
+import AdminPosts from "@/components/adminPosts/adminPosts";
+import AdminPostForm from "@/components/adminPostForm/adminPostForm";
+import AdminUserForm from "@/components/adminUserForm/AdminUserForm";
+import AdminUsers from "@/components/adminUsers/adminUsers";
+import { auth } from "@/lib/auth";
 
-const AdminPage = () => {
+const AdminPage = async () => {
+  const session = await auth();
   return (
     <div className={styles.container}>
       <div className={styles.row}>
@@ -15,19 +17,21 @@ const AdminPage = () => {
           </Suspense>
         </div>
         <div className={styles.col}>
-            <AdminPostsForm />
+          <AdminPostForm userId={session.user.id} />
         </div>
+      </div>
+      <div className={styles.row}>
         <div className={styles.col}>
           <Suspense fallback={<div>Loading...</div>}>
             <AdminUsers />
           </Suspense>
         </div>
         <div className={styles.col}>
-            <AdminUsersForm />
+          <AdminUserForm />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminPage
+export default AdminPage;
