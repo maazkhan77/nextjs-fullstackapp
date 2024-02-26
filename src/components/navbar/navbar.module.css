@@ -6,6 +6,15 @@
 }
 
 .logo{
-    font-size: 25px;
-    font-weight: bold;
+    width: 250px;
+    height: 120px;
+    position: relative;
+}
+
+@media (max-width: 768px){
+    .logo{
+        width: 120px;
+        height: 90px;
+        position: relative;
+    }
 }

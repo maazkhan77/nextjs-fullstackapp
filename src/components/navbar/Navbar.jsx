@@ -13,7 +13,7 @@ const Navbar = async () => {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.logo}>
-        <Image src="/nextjslogo.png" alt="" width={250} height={120} />
+        <Image src="/nextjslogo.png" alt="" fill />
       </Link>
       <div>
         <Links session={session} />
